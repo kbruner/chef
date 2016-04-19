@@ -513,7 +513,14 @@ module ChefConfig
     default :recipe_url, nil
 
     # Set to true if Chef is to set OpenSSL to run in FIPS mode
-    default(:fips) { ENV["CHEF_FIPS"] == "1" }
+    default(:fips) do
+      !ENV["CHEF_FIPS"].nil? || begin
+        o = Ohai::System.new
+        o.load_plugins
+        o.require_plugin "fips"
+        o[:fips][:kernel][:enabled]
+      end
+    end
 
     # Initialize openssl
     def self.init_openssl
@@ -962,6 +969,7 @@ module ChefConfig
       require "digest/md5"
       Digest.const_set("SHA1", OpenSSL::Digest::SHA1)
       OpenSSL::Digest.const_set("MD5", Digest::MD5)
+      ChefConfig.logger.debug "FIPS mode is enabled."
     end
   end
 end
