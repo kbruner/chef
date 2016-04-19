@@ -64,4 +64,4 @@ set FORCE_FFI_YAJL=ext
 set BUNDLE_GEMFILE=C:\opscode\%PROJECT_NAME%\Gemfile
 set BUNDLE_IGNORE_CONFIG=true
 set BUNDLE_FROZEN=1
-call bundle exec rspec -r rspec_junit_formatter -f RspecJunitFormatter -o %WORKSPACE%\test.xml -f documentation spec/functional
+call bundle exec rspec -r rspec_junit_formatter -f RspecJunitFormatter -o %WORKSPACE%\test.xml -f documentation spec/functional spec/integration

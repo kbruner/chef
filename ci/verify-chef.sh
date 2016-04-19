@@ -118,5 +118,5 @@ else
     exit 1
   fi
 
-  sudo env BUNDLE_GEMFILE=/opt/$PROJECT_NAME/Gemfile BUNDLE_IGNORE_CONFIG=true BUNDLE_FROZEN=1 GIT_SSL_NO_VERIFY=true PATH=$PATH TERM=xterm bundle exec rspec -r rspec_junit_formatter -f RspecJunitFormatter -o $WORKSPACE/test.xml -f documentation spec/functional
+  sudo env BUNDLE_GEMFILE=/opt/$PROJECT_NAME/Gemfile BUNDLE_IGNORE_CONFIG=true BUNDLE_FROZEN=1 GIT_SSL_NO_VERIFY=true PATH=$PATH TERM=xterm bundle exec rspec -r rspec_junit_formatter -f RspecJunitFormatter -o $WORKSPACE/test.xml -f documentation spec/functional spec/integration
 fi
