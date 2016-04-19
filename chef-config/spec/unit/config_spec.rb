@@ -171,8 +171,8 @@ RSpec.describe ChefConfig::Config do
           let(:fips_ohai_data) do
             {
               kernel: {
-                enabled: fips_ohai_value
-              }
+                enabled: fips_ohai_value,
+              },
             }
           end
           let(:fips_ohai_value) { false }
