@@ -518,8 +518,12 @@ module ChefConfig
         require 'ohai'
         o = Ohai::System.new
         o.load_plugins
-        o.require_plugin "fips"
-        o[:fips][:kernel][:enabled]
+        begin
+          o.require_plugin "fips"
+          o[:fips][:kernel][:enabled]
+        rescue Ohai::Exceptions::DependencyNotFound
+          false
+        end
       end
     end
 
