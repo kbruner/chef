@@ -515,6 +515,7 @@ module ChefConfig
     # Set to true if Chef is to set OpenSSL to run in FIPS mode
     default(:fips) do
       !ENV["CHEF_FIPS"].nil? || begin
+        require 'ohai'
         o = Ohai::System.new
         o.load_plugins
         o.require_plugin "fips"
