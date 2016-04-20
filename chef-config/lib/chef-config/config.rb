@@ -521,7 +521,7 @@ module ChefConfig
         begin
           o.require_plugin "fips"
           o[:fips][:kernel][:enabled]
-        rescue Ohai::Exceptions::DependencyNotFound
+        rescue Ohai::Exceptions::DependencyNotFound, NoMethodError
           false
         end
       end
