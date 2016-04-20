@@ -125,7 +125,7 @@ describe Chef::Application do
 
           # force let binding to get evaluated or else we stub Pathname.new before we try to use it.
           config_location_pathname
-          allow(Pathname).to receive(:new).with(config_location).and_return(config_location_pathname)
+          allow(Pathname).to receive(:new).and_return(config_location_pathname)
           expect(File).to receive(:read).
             with(config_location).
             and_return(config_content)

@@ -40,6 +40,7 @@ shared_examples_for "an application that loads a dot d" do
       allow(app).to receive(:apply_config).with(anything(), Chef::Config.platform_specific_path("/etc/chef/client.rb")).and_call_original.ordered
       expect(app).to receive(:apply_config).with("foo 0", Pathname.new("#{client_d_dir}/00-foo.rb").cleanpath.to_s).and_call_original.ordered
       expect(app).to receive(:apply_config).with("bar 0", Pathname.new("#{client_d_dir}/01-bar.rb").cleanpath.to_s).and_call_original.ordered
+      allow(Chef::Config).to receive(:init_openssl)
       app.reconfigure
     end
   end
